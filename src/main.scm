@@ -1,5 +1,5 @@
 
 
 
-(define (main) 
-  (display "Hello from Ribuild!\n"))
+(define (json-read) 
+  (display "Hello from srfi-180\n"))
