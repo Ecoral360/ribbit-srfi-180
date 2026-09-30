@@ -1,0 +1,32 @@
+(define-package  
+  ; don't change the ribuild-version yourself, automatically set by ribuild
+  (ribuild-version "1")
+
+  (name "srfi-180")
+  (description "Add your description here !")
+  (version "0.1.0")
+  (authors ("John Doe"))
+
+  (entry main) ; specify the entry point of the program
+  (output-dir "build") ; specify the dir where to put the output of targets
+
+  ;; libraries have the form accepted by the %%include-once ribbit directive:
+  ;; (ribbit "std-lib") OR "path/to/file.scm"
+  (includes
+    (ribbit "r4rs")
+    "src/**")
+
+  (features ; sets the features for all the targets
+    +prim-no-arity  ; prefix `+` sets the feature value to #t
+    +v-port
+    ;-other-feature ; prefix `-` sets the feature value to #f
+    )
+
+  (targets
+    (target "c" ; adds python as a target of the package
+      (output "srfi-180.c") ; overrides the default name given to output program
+      (exe "srfi-180.exe"))   ; adds python as a target of the package
+
+    (target "js" ; adds javascript as a target of the package
+      (out "srfi-180-js.scm") ; overrides the default name given to output program
+      (exe "srfi-180.js.exe")))) ; creates an executable for the target (not available for all target)
